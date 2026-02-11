@@ -31,6 +31,7 @@ return {
       ensure_installed = {
         "ts_ls",
         "lua_ls",
+        "gopls",
       },
       handlers = {
         function(server_name)
