@@ -1,4 +1,4 @@
-vim.g.mapleader = " "
+require("erikc.remap")
 require("erikc.init_lazy")
 require("erikc.set")
 vim.cmd("set expandtab")
