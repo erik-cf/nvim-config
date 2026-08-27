@@ -23,9 +23,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
     -- Save current cursor position and view state
     local view = vim.fn.winsaveview()
-
+    if vim.fn.filereadable("./node_modules/.bin/prettier") ~= 0 then
+      vim.cmd("silent! :%!./node_modules/.bin/prettier --config .prettierrc --stdin-filepath " .. vim.fn.expand("%"))
+    else
+      return
+    end
     -- Run the Prettier command quietly to avoid flickering
-    vim.cmd("silent! :%!./node_modules/.bin/prettier --config .prettierrc --stdin-filepath " .. vim.fn.expand("%"))
 
     -- Restore the cursor and view state
     vim.fn.winrestview(view)
